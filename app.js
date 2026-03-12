@@ -131,7 +131,7 @@ async function renderCollection(){
   const filter = document.getElementById("filterElement").value;
   const habitat = document.getElementById("filterHabitat").value;
 
-  // Remove only theme classes (do not remove body classes like discoveryFlash)
+  // Only remove theme classes, keep other body classes
   document.body.classList.remove(
     "fireTheme","waterTheme","grassTheme","iceTheme","darkTheme","poisonTheme","bugTheme","electricTheme"
   );
@@ -139,8 +139,8 @@ async function renderCollection(){
 
   const animalsToShow = logged.filter(a=>{
     if(search && !a.name.toLowerCase().includes(search)) return false;
-    if(filter!=="all" && a.type!==filter) return false;
-    if(habitat!=="all" && a.habitat!==habitat) return false;
+    if(filter!=="all" && a.type !== filter) return false;
+    if(habitat!=="all" && a.habitat !== habitat) return false;
     return true;
   });
 
@@ -158,6 +158,7 @@ async function renderCollection(){
     card.className = `card ${a.type} ${a.rarity}`;
     if(a.type2) card.dataset.type2 = a.type2;
     card.onclick = ()=>openAnimal(a,img);
+
     card.innerHTML = `
       <div class="rarity">${stars}</div>
       <div class="card-header"><span>${a.name}</span></div>
@@ -170,7 +171,7 @@ async function renderCollection(){
         <div class="footer">
           <span>${typeIcons[a.type]}${a.type2 ? ` ${typeIcons[a.type2]}` : ""}</span>
           ${a.habitat ? `<span class="habitat-badge">${habitatIcons[a.habitat]} ${a.habitat}</span>` : ""}
-          <span>${continentIcons[a.continent]}</span>
+          <span>${continentIcons[a.continent] || "❓"}</span>
         </div>
       </div>
     `;
