@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WildDex</title>
 
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Animal Modal -->
+<div id="animalModal" class="modal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <h2 id="modalName"></h2>
+    <img id="modalImg">
+    <p id="modalScientific"></p>
+    <p id="modalMove"></p>
+    <p id="modalStats"></p>
+    <p id="modalType"></p>
+    <p id="modalContinent"></p>
+    <p id="modalHabitat"></p>
+    <p id="modalDate"></p>
+  </div>
+</div>
+
+<h1>WildDex</h1>
+
+<div class="tabs">
+
+<div class="tab active" onclick="openPage(event,'log')">📘 Log</div>
+<div class="tab" onclick="openPage(event,'catches')">🐾 Catches</div>
+<div class="tab" onclick="openPage(event,'badges')">🏅 Badges</div>
+<div class="tab" onclick="openPage(event,'stats')">📊 Stats</div>
+<div class="tab" onclick="openPage(event,'map')">🗺 Map</div>
+
+</div>
+
+<!-- LOG PAGE -->
+<div id="log" class="page active">
+
+<div class="log-panel">
+
+<h2>🔎 Wildlife Scanner</h2>
+
+<input id="animalInput" list="animals" placeholder="Log animal">
+
+<datalist id="animals"></datalist>
+
+<br><br>
+
+<button class="log-btn" onclick="logAnimal()">Log Animal</button>
+
+<p id="logMessage"></p>
+
+<div class="progress-bar">
+<div id="progressFill"></div>
+</div>
+
+<p id="progressText"></p>
+<p id="xpDisplay"></p>
+
+</div>
+</div>
+
+
+<!-- COLLECTION PAGE -->
+<div id="catches" class="page">
+
+<div class="filter-bar">
+
+<input id="searchBox" placeholder="🔍 Search animals" oninput="renderCollection()">
+
+<select id="filterElement" onchange="renderCollection()">
+<option value="all">🔥 All Elements</option>
+<option value="fire">🔥 Fire</option>
+<option value="water">💧 Water</option>
+<option value="grass">🌿 Grass</option>
+<option value="ice">🧊 Ice</option>
+<option value="flying">🕊️ Flying</option>
+<option value="dark">🌑 Dark</option>
+<option value="poison">☣️ Poison</option>
+<option value="bug">🐛 Bug</option>
+<option value="electric">⚡ Electric</option>
+</select>
+
+<select id="filterHabitat" onchange="renderCollection()">
+<option value="all">🌍 All Habitats</option>
+<option value="forest">🌲 Forest</option>
+<option value="grassland">🌾 Grassland</option>
+<option value="desert">🏜️ Desert</option>
+<option value="ocean">🌊 Ocean</option>
+<option value="freshwater">🏞️ Freshwater</option>
+<option value="wetland">🪷 Wetland</option>
+<option value="mountain">⛰️ Mountain</option>
+<option value="polar">❄️ Polar</option>
+<option value="rainforest">🌴 Rainforest</option>
+</select>
+
+</div>
+
+<div id="collection"></div>
+
+</div>
+
+
+<!-- BADGES PAGE -->
+<div id="badges" class="page">
+<div id="badgeArea"></div>
+</div>
+
+
+<!-- STATS PAGE -->
+<div id="stats" class="page">
+
+<h2>📊 WildDex Statistics</h2>
+
+<p id="statTotal"></p>
+<p id="statRare"></p>
+<p id="statHabitats"></p>
+<p id="statContinents"></p>
+
+<h3>🌍 Explorer Map</h3>
+
+<div id="continentMap" class="continent-map">
+
+<div class="continent" id="cont-africa">Africa</div>
+<div class="continent" id="cont-asia">Asia</div>
+<div class="continent" id="cont-europe">Europe</div>
+<div class="continent" id="cont-northamerica">North America</div>
+<div class="continent" id="cont-southamerica">South America</div>
+<div class="continent" id="cont-oceania">Oceania</div>
+<div class="continent" id="cont-antarctica">Antarctica</div>
+
+</div>
+</div>
+
+
+<!-- MAP PAGE -->
+<div id="map" class="page">
+
+<h2>🌍 WildDex World Map</h2>
+
+<div id="worldMap">
+
+<svg viewBox="0 0 1000 500">
+
+<path id="map-northamerica" class="continent-shape"
+d="M100 100 L200 80 L260 140 L200 200 L120 180 Z"/>
+
+<path id="map-southamerica" class="continent-shape"
+d="M260 220 L300 240 L290 340 L250 360 L230 300 Z"/>
+
+<path id="map-europe" class="continent-shape"
+d="M460 110 L500 100 L520 120 L480 140 Z"/>
+
+<path id="map-africa" class="continent-shape"
+d="M480 160 L520 170 L540 250 L500 300 L460 230 Z"/>
+
+<path id="map-asia" class="continent-shape"
+d="M560 100 L720 100 L740 160 L600 180 Z"/>
+
+<path id="map-oceania" class="continent-shape"
+d="M760 300 L800 320 L790 350 L750 340 Z"/>
+
+<path id="map-antarctica" class="continent-shape"
+d="M200 420 L800 420 L780 450 L220 450 Z"/>
+
+</svg>
+
+</div>
+
+</div>
+
+
+<script src="animals.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
